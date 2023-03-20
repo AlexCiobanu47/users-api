@@ -30,4 +30,15 @@ public class UserService {
     public void deleteUser(ObjectId id){
         userRepository.deleteById(id);
     }
+    public void updateUser(ObjectId id, User user){
+        if(userRepository.existsById(id)){
+            User userToBeUpdated = new User();
+            userToBeUpdated.setId(id);
+            userToBeUpdated.setUsername(user.getUsername());
+            userToBeUpdated.setName(user.getName());
+            userToBeUpdated.setEmail(user.getEmail());
+            userRepository.save(userToBeUpdated);
+        }
+        else throw new IllegalStateException(String.format("User with id %s doesn't exist.", id));
+    }
 }
