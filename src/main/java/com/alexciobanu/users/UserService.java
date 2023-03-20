@@ -27,4 +27,7 @@ public class UserService {
     public void addUser(User user){
         userRepository.insert(user);
     }
+    public void deleteUser(ObjectId id){
+        userRepository.deleteById(id);
+    }
 }
