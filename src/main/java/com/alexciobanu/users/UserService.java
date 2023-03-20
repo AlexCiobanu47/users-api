@@ -4,6 +4,7 @@ import org.bson.types.ObjectId;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 @Service
@@ -22,5 +23,8 @@ public class UserService {
                         String.format("User with id %s doesn't exist.", id)
                 )
         );
+    }
+    public void addUser(User user){
+        userRepository.insert(user);
     }
 }
