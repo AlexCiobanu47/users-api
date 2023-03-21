@@ -1,6 +1,5 @@
 package com.alexciobanu.users;
 
-import org.bson.types.ObjectId;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +19,7 @@ public class UserController {
         return new ResponseEntity<List<User>>(userService.getUsers(), HttpStatus.OK);
     }
     @GetMapping(path = "/{id}")
-    public ResponseEntity<User> getUser(@PathVariable ObjectId id){
+    public ResponseEntity<User> getUser(@PathVariable String id){
         return new ResponseEntity<User>(userService.getUser(id), HttpStatus.OK);
     }
     @PostMapping
@@ -28,11 +27,11 @@ public class UserController {
         userService.addUser(user);
     }
     @DeleteMapping(path = "/{id}")
-    public void deleteUser(@PathVariable ObjectId id){
+    public void deleteUser(@PathVariable String id){
         userService.deleteUser(id);
     }
     @PutMapping(path = "/{id}")
-    public void updateUser(@PathVariable ObjectId id, @RequestBody User user){
+    public void updateUser(@PathVariable String id, @RequestBody User user){
         userService.updateUser(id, user);
     }
 }

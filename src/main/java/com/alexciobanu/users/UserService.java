@@ -1,10 +1,6 @@
 package com.alexciobanu.users;
 
-import org.bson.types.ObjectId;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 @Service
@@ -17,7 +13,7 @@ public class UserService {
     public List<User> getUsers(){
         return userRepository.findAll();
     }
-    public User getUser(ObjectId id){
+    public User getUser(String id){
         return userRepository.findById(id).orElseThrow(
                 () -> new IllegalStateException(
                         String.format("User with id %s doesn't exist.", id)
@@ -27,10 +23,10 @@ public class UserService {
     public void addUser(User user){
         userRepository.insert(user);
     }
-    public void deleteUser(ObjectId id){
+    public void deleteUser(String id){
         userRepository.deleteById(id);
     }
-    public void updateUser(ObjectId id, User user){
+    public void updateUser(String id, User user){
         if(userRepository.existsById(id)){
             User userToBeUpdated = new User();
             userToBeUpdated.setId(id);
